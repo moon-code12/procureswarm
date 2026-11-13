@@ -1,0 +1,19 @@
+{
+  "name": "procureswarm-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file=.env --watch src/index.js",
+    "start": "node --env-file=.env src/index.js",
+    "deploy-contract": "node --env-file=.env scripts/deploy-contract.js",
+    "test-contract": "node --env-file=.env scripts/test-contract.js",
+    "test": "node --test \"test/*.test.js\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "near-api-js": "^7.5.3"
+  }
+}

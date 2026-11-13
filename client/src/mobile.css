@@ -1,0 +1,64 @@
+/* Mobile and tablet layout. Loaded after dashboard.css. */
+.topbar-brand,.near-pill{display:none}
+.account-chip{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.show-all{width:100%;margin-top:14px;min-height:44px}
+
+@media(max-width:680px){
+  /* the icon-only sidebar wastes 15% of the screen: hide it, brand moves to the top bar */
+  .app-shell{display:block}
+  .sidebar{display:none}
+  .topbar{height:auto;min-height:60px;padding:10px 14px;gap:10px;position:sticky;top:0;z-index:20;background:rgba(11,18,32,.88);backdrop-filter:blur(10px)}
+  .topbar-brand{display:flex;align-items:center;gap:9px;min-width:0}
+  .topbar-brand .brand-mark{width:32px;height:32px;font-size:18px;border-radius:10px}
+  .topbar-brand b{font:800 14px Manrope;letter-spacing:-.4px;white-space:nowrap}
+  .breadcrumb{display:none}
+  .top-actions{gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .mode-pill,.near-pill,.status-tag{font-size:8px;padding:6px 8px;white-space:nowrap}
+  .near-pill{display:none}
+  .account-chip{max-width:96px}
+  .secondary{min-height:36px;font-size:11px}
+
+  #result{scroll-margin-top:100px}
+  .content{padding:18px 14px 28px}
+  .welcome-row h1{font-size:22px;line-height:1.25}
+  .stat-card>strong{font-size:21px}
+
+  /* 16px inputs stop iOS from zooming the page when a field is focused; 44px+ tap targets */
+  .request-panel input{font-size:16px;min-height:46px}
+  .primary{min-height:46px;font-size:13px}
+
+  .winner{flex-direction:column;align-items:flex-start;gap:14px}
+  .winner-price{text-align:left}
+  .winner h2{font-size:17px}
+  .panel{padding:16px}
+  .panel-head{margin-bottom:16px}
+  .request-hint{flex-direction:column;gap:6px}
+  .request-hint p{overflow-wrap:anywhere}
+
+  .bidrow{padding:9px 6px}
+  .bidrow-plot{height:30px}
+  .bar{top:7px}
+  .bidchart-axis-ticks span{font-size:8px}
+
+  /* the tooltip becomes a bottom sheet so it can never run off a narrow screen */
+  .viz-tooltip{left:12px!important;right:12px;top:auto!important;bottom:calc(12px + env(safe-area-inset-bottom));transform:none!important;max-width:none;min-width:0}
+
+  .table-wrap{-webkit-overflow-scrolling:touch}
+  footer{padding-bottom:env(safe-area-inset-bottom)}
+
+  /* hover lifts feel sticky on touch: keep the colour change, drop the movement */
+  .stat-card:hover,.allocation.hot{transform:none}
+}
+
+/* tablets: keep the sidebar but give the content more room */
+@media(min-width:681px) and (max-width:1000px){
+  .topbar{padding:0 22px}
+  .content{padding:26px 22px}
+}
+
+@media(max-width:680px){
+  .history-item{grid-template-columns:1fr auto;gap:8px 12px}
+  .history-item .status-tag{grid-column:1 / -1;justify-self:start}
+  .tab{flex:1;text-align:center;padding:12px 8px}
+  select{font-size:16px;min-height:46px}
+}
