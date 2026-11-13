@@ -55,6 +55,9 @@ function startStream(res) {
     "X-Accel-Buffering": "no"
   });
   res.flushHeaders();
+  // Some production proxies buffer very small chunks. Send harmless whitespace
+  // first so the browser receives the following NDJSON progress events promptly.
+  res.write(`${" ".repeat(2048)}\n`);
   return event => { if (!res.writableEnded && !res.destroyed) res.write(`${JSON.stringify(event)}\n`); };
 }
 
