@@ -179,7 +179,7 @@ app.get("*", (_req, res, next) => {
 });
 
 // Start listening only when run directly (tests import `app` without opening a port).
-if (process.argv[1] && import.meta.url === new URL(`file:///${process.argv[1].replace(/\\/g, "/")}`).href) {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const port = process.env.PORT || 6000;
   app.listen(port, () => {
     const cfg = limitConfig();
