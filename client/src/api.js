@@ -1,4 +1,6 @@
-export const API = import.meta.env.VITE_API_URL || 'http://localhost:6000'
+// In the single-service Render deployment the frontend and API share one origin.
+// VITE_API_URL remains available for local development or a split deployment.
+export const API = import.meta.env.VITE_API_URL || ''
 
 // The sign-in token only lives for the browser tab (sessionStorage), never in a long-lived store.
 const TOKEN_KEY = 'ps-session'

@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { runAuction } from "./engine.js";
 import { agentsEnabled, usage } from "./agents.js";
 import { nearEnabled, recordAuctionOnChain, getOnChainRecord, verifyAuctionOnChain, nearProvider } from "./near.js";
@@ -12,6 +14,8 @@ const ACCOUNT_RE = /^[a-z0-9._-]{2,64}$/;
 
 export const app = express();
 app.disable("x-powered-by");
+
+const clientDist = resolve(dirname(fileURLToPath(import.meta.url)), "../../client/dist");
 
 // Browsers from other origins are refused; see ALLOWED_ORIGINS in .env.example.
 app.use((req, res, next) => {
@@ -163,6 +167,15 @@ app.get("/api/onchain/:requestId", async (req, res) => {
     console.error(err);
     res.status(502).json({ error: "Could not read from NEAR testnet" });
   }
+});
+
+// In production Render serves the built React app from this same web service.
+// API routes are defined above, so this fallback only handles client-side routes.
+app.use(express.static(clientDist));
+app.get("*", (_req, res, next) => {
+  res.sendFile(resolve(clientDist, "index.html"), err => {
+    if (err) next();
+  });
 });
 
 // Start listening only when run directly (tests import `app` without opening a port).
