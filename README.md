@@ -2,6 +2,8 @@
 
 Group procurement run by AI agents, with every result recorded on the **NEAR testnet**.
 
+Live demo: https://procureswarm.onrender.com
+
 A group of buyers pools one bulk order (for example 100 bags of rice). Five **seller agents** bid for it over one or two rounds, five **buyer agents** state how many units each business needs, and an **auctioneer agent** picks the winner. The cost split between the buyers is calculated in code, and a hash of the result is written to a smart contract on NEAR testnet, where anyone can verify it.
 
 > This is a prototype. It uses NEAR **testnet** only (no real money) and the sellers and buyers are fictional.
